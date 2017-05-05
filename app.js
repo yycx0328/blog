@@ -3,8 +3,20 @@
  */
 
 var express = require('express');
+var swig = require('swig');
+var path = require('path');
 var server = require('./config/server');
 var app = express();
+
+swig.setDefaults({cache:false});
+app.engine('html',swig.renderFile);
+app.use(express.static(path.join(__dirname,'public')));
+app.set('views',path.join(__dirname,'views'));
+app.set('view engine','html');
+
+app.use('/',require('./routers/index'))
+app.use('/admin',require('./routers/admin'));
+app.use('/api',require('./routers/api'));
 
 app.listen(server.port,server.host,function (err) {
     if(err){

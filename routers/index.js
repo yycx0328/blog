@@ -10,8 +10,10 @@ var jsonResult = {
 };
 
 router.get('/',function (req, res,next) {
-    console.log(jsonResult);
-    res.send('这是首页');
+    console.log(req.userInfo);
+    res.render('index',{
+        userInfo:req.userInfo
+    });
 });
 
 module.exports = router;

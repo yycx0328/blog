@@ -95,4 +95,9 @@ router.post('/user/register',function (req, res,next) {
     });
 });
 
+router.get('/user/logout',function (req,res,next) {
+    req.cookies.set('userInfo',null);
+    return res.json(jsonResult);
+})
+
 module.exports = router;

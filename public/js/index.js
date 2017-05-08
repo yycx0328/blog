@@ -10,14 +10,12 @@ $(function () {
     $loginBox.find('a.colMint').on('click',function () {
         $registerBox.show();
         $loginBox.hide();
-        $userInfo.hide();
     });
 
     // 显示登录模块
     $registerBox.find('a.colMint').on('click',function () {
         $loginBox.show();
         $registerBox.hide();
-        $userInfo.hide();
     });
 
     // 登录按钮
@@ -36,7 +34,6 @@ $(function () {
                 else {
                     setTimeout(function () {
                         $loginBox.hide();
-                        $userInfo.show();
 
                         $userInfo.find('.username').html(data.userInfo.username);
                         $userInfo.find('.info').html('你好，欢迎光临我的博客！');
@@ -68,4 +65,18 @@ $(function () {
             }
         });
     });
+
+    $('#logoutBtn').on('click',function () {
+        $.ajax({
+            type:'get',
+            url:'/api/user/logout',
+            dataType:'json',
+            success:function (data) {
+                $registerBox.find('.colWarning').html(data.message);
+                if(!data.code){
+                    window.location.reload();
+                }
+            }
+        });
+    })
 });

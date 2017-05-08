@@ -8,9 +8,9 @@
 </head>
 <body>
     {% if userInfo._id %}
-    <div class="rightBox" id="userInfo" style="display: none;">
+    <div class="rightBox" id="userInfo">
         <div class="title"><span>用户信息</span></div>
-        <p><span class="colDark username"></span></p>
+        <p><span class="colDark username">{{ userInfo.username }}</span></p>
         <p><span class="colDanger info"></span></p>
         <p><span class="colDark logout"><a href="javascript:" id="logoutBtn">退出</a></span></p>
     </div>

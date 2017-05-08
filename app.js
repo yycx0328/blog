@@ -37,7 +37,7 @@ app.use(function (req,res,next) {
     req.userInfo = {};
     if(req.cookies.get('userInfo')){
         try{
-            req.userInfo = JSON.parse(req.coo.get('userInfo'));
+            req.userInfo = JSON.parse(req.cookies.get('userInfo'));
         }catch (e){}
     }
     next();

@@ -29,16 +29,22 @@ $(function () {
             },
             dataType:'json',
             success:function (data) {
-                if(!data.code)
+                console.log(data);
+                if(data.code){
                     $loginBox.find('.colWarning').html(data.message);
+                }
                 else {
                     setTimeout(function () {
-                        $loginBox.hide();
+                        // $loginBox.hide();
 
                         $userInfo.find('.username').html(data.userInfo.username);
                         $userInfo.find('.info').html('你好，欢迎光临我的博客！');
+                        window.location.reload();
                     }, 1000);
                 }
+            },
+            error:function (err) {
+                console.log(err);
             }
         })
     });
@@ -69,7 +75,7 @@ $(function () {
     $('#logoutBtn').on('click',function () {
         $.ajax({
             type:'get',
-            url:'/api/user/logout',
+            url:'/api/logout',
             dataType:'json',
             success:function (data) {
                 $registerBox.find('.colWarning').html(data.message);
@@ -78,5 +84,5 @@ $(function () {
                 }
             }
         });
-    })
+    });
 });

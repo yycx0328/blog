@@ -10,7 +10,6 @@ var jsonResult = {
 };
 
 router.get('/',function (req, res,next) {
-    console.log(req.userInfo);
     res.render('index',{
         userInfo:req.userInfo
     });

@@ -1,39 +1,104 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>让技术有自己的语言</title>
-    <script src="/public/js/jquery-3.2.1.min.js"></script>
-    <script src="/public/js/index.js"></script>
-</head>
-<body>
-    {% if userInfo._id %}
-    <div class="rightBox" id="userInfo">
-        <div class="title"><span>用户信息</span></div>
-        <p><span class="colDark username">{{ userInfo.username }}</span></p>
-        <p><span class="colDanger info"></span></p>
-        <p><span class="colDark logout"><a href="javascript:" id="logoutBtn">退出</a></span></p>
-    </div>
-    {% else %}
+{% extends 'layout.html'%}
+{% block title %}
+首页
+{% endblock %}
 
-    <div class="rightBox" id="loginBox">
-        <div class="title"><span>登陆</span></div>
-        <div class="line"><span class="colDark">用户名：</span><input name="username" type="text"><em></em></div>
-        <div class="line"><span class="colDark">密码：</span><input name="password" type="password"><em></em></div>
-        <div class="line"><span class="colDark"></span><button>登 录</button></div>
-        <p class="textRight">还没注册？<a href="javascript:" class="colMint">马上注册</a></p>
-        <p class="colWarning textCenter"></p>
-    </div>
+{% block main %}
+<!-- WELCOME -->
+<div id="welcome" class="box">
 
-    <div class="rightBox" id="registerBox" style="display: none;">
-        <div class="title"><span>注册</span></div>
-        <div class="line"><span class="colDark">用户名：</span><input name="username" type="text"><em></em></div>
-        <div class="line"><span class="colDark">密码：</span><input name="password" type="password"><em></em></div>
-        <div class="line"><span class="colDark">确认：</span><input name="repassword" type="password"><em></em></div>
-        <div class="line"><span class="colDark"></span><button>注 册</button></div>
-        <p class="textRight">已有账号？<a href="javascript:" class="colMint">马上登录</a></p>
-        <p class="colWarning textCenter"></p>
-    </div>
-    {% endif %}
-</body>
-</html>
+    <div id="welcome-inner">
+
+        <h2>Hello world, we are London based new media company.</h2>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisi nunc, aliquam quis sollicitudin in,
+            malesuada eu lectus. Vivamus sodales semper ultricies. Ut dui anteestem dignissim ac ornare eget, sollicitudin
+            a libero. Donec quis sem magna, a venenatis felisti. Duis et arcu sed mi pharetra sagittis quis et mag. <strong>Mauris
+                vitae vestibulum velit</strong> nuleia at venenatis justo. Duis malesuada purus eu mi adipiscing adipiscing. Donec esi.</p>
+
+    </div> <!-- /welcome-inner -->
+
+    <!-- TWITTER -->
+    <div id="twitter" class="box">
+
+        <ul>
+            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisi nunc, aliquam quis sollicitudin in, malesuada eu lectus.
+                Vivamus sodales semper ultricies. Ut dui anteestem dignissim ac ornare eget, sollicitudin a libero. &ndash; <a href="#">58 minutes ago</a></li>
+        </ul>
+
+    </div> <!-- /twitter -->
+
+    <div id="imac">
+        <div id="slider" class="nivoSlider">
+            <img src="/public/images/slide-01.jpg" alt="" />
+        </div> <!-- /slider -->
+
+    </div> <!-- /imac -->
+
+</div> <!-- /welcome -->
+
+<!-- COLUMNS -->
+<div id="section" class="box">
+
+    <!-- CONTENT -->
+    <div id="content">
+
+        <h2 class="nom">Meet our products</h2>
+
+        <ul class="products">
+            <li class="box">
+                <div class="products-img"><img src="images/product-01.jpg" alt="" /></div>
+                <!-- Photo: (c) Nic McPhee -->
+                <div class="products-desc">
+                    <h3><a href="#">Web Design</a></h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisquemi nisi nunc, aliquam quis sollicitudin in, malesuada lectus. Vivamuse sodales semper ultricies. Ut dui anteestem dignissim ac ornareget, sollicitudin a libero. Donec quis sem magna, a venenatis felisti.</p>
+                </div> <!-- /products-desc -->
+            </li>
+            <li class="box">
+                <div class="products-img"><img src="images/product-02.jpg" alt="" /></div>
+                <!-- Photo: (c) Emran Kassim -->
+                <div class="products-desc">
+                    <h3><a href="#">Graphic Design</a></h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisquemi nisi nunc, aliquam quis sollicitudin in, malesuada lectus. Vivamuse sodales semper ultricies. Ut dui anteestem dignissim ac ornareget, sollicitudin a libero. Donec quis sem magna, a venenatis felisti.</p>
+                </div> <!-- /products-desc -->
+            </li>
+            <li class="last box">
+                <div class="products-img"><img src="images/product-03.jpg" alt="" /></div>
+                <!-- Photo: (c) Scott Robinson -->
+                <div class="products-desc">
+                    <h3><a href="#">Corporate Identity</a></h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisquemi nisi nunc, aliquam quis sollicitudin in, malesuada lectus. Vivamuse sodales semper ultricies. Ut dui anteestem dignissim ac ornareget, sollicitudin a libero. Donec quis sem magna, a venenatis felisti.</p>
+                </div> <!-- /products-desc -->
+            </li>
+        </ul>
+
+    </div> <!-- /content -->
+
+    <!-- SIDEBAR -->
+    <div id="aside">
+
+        <h2 class="nom">What is new?</h2>
+
+        <ul class="articles">
+            <li>
+                <h3><a href="#">Proudly presents new version</a></h3>
+                <p class="date">Monday, October 27</p>
+                <p>Lorem ipsum dolor sit amet, consecti adipiscing elit. Aliquam feugiat aliquet elit in comod. Etiam pharetra consectetur velit vel dignissim. Duisem purus augue, ullamcorper et ultrices quis.</p>
+            </li>
+            <li>
+                <h3><a href="#">New products announced</a></h3>
+                <p class="date">Saturday, October 16</p>
+                <p>Lorem ipsum dolor sit amet, consecti adipiscing elit. Aliquam feugiat aliquet elit in comod. Etiam pharetra consectetur velit vel dignissim. Duisem purus augue, ullamcorper et ultrices quis.</p>
+            </li>
+            <li class="last">
+                <h3><a href="#">Portfolio was updated today</a></h3>
+                <p class="date">Thursday, September 13</p>
+                <p>Lorem ipsum dolor sit amet, consecti adipiscing elit. Aliquam feugiat aliquet elit in comod. Etiam pharetra consectetur velit vel dignissim. Duisem purus augue, ullamcorper et ultrices quis.</p>
+            </li>
+        </ul>
+
+    </div> <!-- /aside -->
+
+</div> <!-- /section -->
+
+{% endblock %}

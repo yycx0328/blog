@@ -10,8 +10,8 @@ router.use(function (req,res,next) {
     jsonResult = {
         code:0,
         message:''
-    }
-    next()
+    };
+    next();
 })
 
 router.post('/user/login',function (req,res,next) {
@@ -38,7 +38,6 @@ router.post('/user/login',function (req,res,next) {
             username : userInfo.username
         }));
         res.json(jsonResult);
-        return;
     });
 });
 
@@ -91,13 +90,17 @@ router.post('/user/register',function (req, res,next) {
         return user.save();
     }).then(function (newUserInfo) {
         jsonResult.message='注册成功';
+        jsonResult.userInfo = {
+            _id:newUserInfo._id,
+            username:newUserInfo.username
+        };
         res.json(jsonResult);
     });
 });
 
-router.get('/user/logout',function (req,res,next) {
+router.get('/logout',function (req,res,next) {
     req.cookies.set('userInfo',null);
-    return res.json(jsonResult);
-})
+    res.json(jsonResult);
+});
 
 module.exports = router;

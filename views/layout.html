@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-language" content="en" />
+    <meta name="description" content="javascript,css,nodejs,html5,blog" />
+    <meta name="author" content="小皮蛋" />
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="/public/css/main.css" />
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="/public/css/skin.css" />
+    <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/public/css/login-register.css" />
+
+    <script type="text/javascript" src="/public/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/public/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/public/js/login-register.js"></script>
+    <title>{% block title%}{% endblock %}</title>
+</head>
+
+<body id="hp"> <!-- APPLY CSS STYLES FOR HOMEPAGE -->
+<div id="main">
+    <!-- HEADER -->
+    <div id="header" class="box">
+        <p id="logo"><a href="./" title="[Go to homepage]"><img src="/public/design/logo.png" alt="" /></a></p>
+        <!-- NAVIGATION -->
+        <ul id="nav">
+            <li class="current"><a href="#"><span>首页</span></a></li>
+            <li><a href="#"><span>Nodejs</span></a></li>
+            <li><a href="#"><span>JavaScript</span></a></li>
+            <li><a href="#"><span>Css</span></a></li>
+            <li><a href="#"><span>C#</span></a></li>
+            <li><a href="#"><span>闲聊</span></a></li>
+        </ul>
+        <!-- SOCIAL ICONS -->
+        {% if userInfo._id %}
+        <div id="userInfoBox">
+            <p class="nav-icons"><span style="color: #fff">欢迎，{{ userInfo.username}}</span><img src="/public/design/logout.png" alt="" /></p>
+        </div>
+        {% else %}
+        <p class="nav-icons"><a href="javascript:" onclick="openLoginModal()"><img src="/public/design/login.png" alt="" /></a></p>
+        {% endif %}
+    </div> <!-- /header -->
+    {% block main %}{% endblock %}
+
+    <!-- CONTACT -->
+    <div id="contact" style="text-align: center;">
+        <address>
+            小皮蛋工作室 <span>|</span>
+            <a href="http://www.isofteam.com">www.isofteam.com</a> <span>|</span>
+            <a href="mailto:lyh_oracle@hotmail.com">lyh_oracle@hotmail.com</a> <span>|</span>
+            地址: 中国上海浦东新区 <span>|</span>
+            电话: 136****6428
+        </address>
+    </div> <!-- /contact -->
+    <!-- FOOTER -->
+    <div id="footer" class="box" style="text-align: center;">
+        <p>Copyright &copy;&nbsp;2017 <a href="#">isofteam</a>, All Rights Reserved &reg;</p>
+    </div> <!-- /footer -->
+
+    <div class="modal fade login" id="loginModal">
+        <div class="modal-dialog login animated">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">用户登录</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="box">
+                        <div class="content">
+                            <div class="social">
+                                <a class="circle github" href="/auth/github">
+                                    <i class="fa fa-github fa-fw"></i>
+                                </a>
+                                <a id="google_login" class="circle google" href="/auth/google_oauth2">
+                                    <i class="fa fa-google-plus fa-fw"></i>
+                                </a>
+                                <a id="facebook_login" class="circle facebook" href="/auth/facebook">
+                                    <i class="fa fa-facebook fa-fw"></i>
+                                </a>
+                            </div>
+                            <div class="division">
+                                <div class="line l"></div>
+                                <span>or</span>
+                                <div class="line r"></div>
+                            </div>
+                            <div class="error"></div>
+                            <div id="loginBox" class="form loginBox">
+                                <input class="form-control" type="text" placeholder="用户名" name="username">
+                                <input class="form-control" type="password" placeholder="密码" name="password">
+                                <button class="btn btn-default btn-login" value="login">登录</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div id="registerBox" class="content form registerBox" style="display:none;">
+                            <input class="form-control" type="text" placeholder="用户名" name="username">
+                            <input class="form-control" type="password" placeholder="密码" name="password">
+                            <input class="form-control" type="password" placeholder="确认密码" name="repassword">
+                            <button class="btn btn-default btn-register" value="login">注册</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="forgot login-footer">
+                            <span>还没注册？
+                                 <a href="javascript: showRegisterForm();">马上注册</a>
+                            </span>
+                    </div>
+                    <div class="forgot register-footer" style="display:none">
+                        <span>已有账号？</span>
+                        <a href="javascript: showLoginForm();">马上登录</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- /main -->
+</body>
+</html>

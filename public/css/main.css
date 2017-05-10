@@ -4,7 +4,7 @@ RESET & HTML ELEMENTS
 
 blockquote, body, button, code, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, img, legend, li, ol, p, pre, td, th, ul {margin:0; padding:0; border:0; vertical-align:baseline;}
 address, blockquote, dl, fieldset, form, h1, h2, h3, h4, h5, h6, ol, p, table, ul {margin:15px 0;}
-body {background:url("../design/bg.png") 0 0 repeat-x; font:0.8em/1.6 "arial", sans-serif;}
+body {background:url("../design/bg.png") 0 0 repeat; font:0.8em/1.6 "arial", sans-serif;}
 a {text-decoration:none;}
 h1 {font-size:300%; line-height:1;}
 h2 {font-size:200%;}

@@ -26,7 +26,7 @@
         <ul id="nav">
             {% if categories %}
             {% for category in categories %}
-                <li><a style="cursor: pointer;" onclick="categoryClick('{{ category._id.toString() }}','{{ category.categoryname }}')"><span>{{ category.categoryname }}</span></a></li>
+                <li><a style="cursor: pointer;" href="category_index?categoryid={{ category._id.toString() }}"><span>{{ category.categoryname }}</span></a></li>
             {% endfor %}
             {% endif %}
         </ul>

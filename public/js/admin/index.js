@@ -29,12 +29,10 @@ function addCategory() {
         success:function (data) {
             console.log(data);
             if(data.code){
-                $('.alert-danger').html(data.message);
-                $('.alert-danger').css('display','block');
+                displayAlert(false,data.message);
             }
             else {
-                $('.alert-success').html(data.message);
-                $('.alert-success').css('display','block');
+                displayAlert(true,data.message);
                 setTimeout(function () {
                     window.location.href='/admin/categories';
                 }, 1000);
@@ -44,4 +42,65 @@ function addCategory() {
             console.log(err);
         }
     })
+}
+
+// 修改分类
+function updateCategory() {
+    $categoryUpdateBox = $('#categoryUpdateBox');
+    $.ajax({
+        type:'post',
+        url:'/admin/category/update',
+        data:{
+            categoryid:$categoryUpdateBox.find('[name="categoryid"]').val(),
+            categoryname:$categoryUpdateBox.find('[name="categoryname"]').val()
+        },
+        dataType:'json',
+        success:function (data) {
+            console.log(data);
+            if(data.code){
+                displayAlert(false,data.message);
+            }
+            else {
+                displayAlert(true,data.message);
+                setTimeout(function () {
+                    window.location.href='/admin/categories';
+                }, 1000);
+            }
+        },
+        error:function (err) {
+            console.log(err);
+        }
+    })
+}
+
+// 删除分类
+function deleteCategoryBtn(id) {
+    $.ajax({
+        type:'post',
+        url:'/admin/category/delete',
+        data:{categoryid:id},
+        dataType:'json',
+        success:function (data) {
+            alert(data.message);
+            if(!data.code){
+                window.location.reload();
+            }
+        }
+    })
+}
+
+// 显示提示面板
+function displayAlert(success,message) {
+    if(success){
+        $('.alert-danger').html('');
+        $('.alert-danger').css('display','none');
+        $('.alert-success').html(message);
+        $('.alert-success').css('display','block');
+    }
+    else{
+        $('.alert-danger').html(message);
+        $('.alert-danger').css('display','block');
+        $('.alert-success').html('');
+        $('.alert-success').css('display','none');
+    }
 }

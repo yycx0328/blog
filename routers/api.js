@@ -8,8 +8,8 @@ var jsonResult;
 
 router.use(function (req,res,next) {
     jsonResult = {
-        code:0,
-        message:''
+        code:-1,
+        message:'初始化异常'
     };
     next();
 });
@@ -27,7 +27,7 @@ router.post('/user/login',function (req,res,next) {
             res.json(jsonResult);
             return;
         }
-
+        jsonResult.code = 0;
         jsonResult.message='登录成功';
         jsonResult.userInfo = {
             _id : userInfo._id,
@@ -89,6 +89,7 @@ router.post('/user/register',function (req, res,next) {
         });
         return user.save();
     }).then(function (newUserInfo) {
+        jsonResult.code = 0;
         jsonResult.message='注册成功';
         jsonResult.userInfo = {
             _id:newUserInfo._id,

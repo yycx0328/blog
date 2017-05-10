@@ -4,9 +4,8 @@
 var express = require('express');
 var router = express.Router();
 var jsonResult = {
-    code:-1000,
-    message:'初始化异常',
-    data:null
+    code:-1,
+    message:'初始化异常'
 };
 
 router.get('/',function (req, res,next) {

@@ -13,6 +13,7 @@
     <script type="text/javascript" src="/public/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="/public/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/public/js/login-register.js"></script>
+    <script type="text/javascript" src="/public/js/index.js"></script>
     <title>{% block title%}{% endblock %}</title>
 </head>
 
@@ -23,12 +24,11 @@
         <p id="logo"><a href="./" title="[Go to homepage]"><img src="/public/design/logo.png" alt="" /></a></p>
         <!-- NAVIGATION -->
         <ul id="nav">
-            <li class="current"><a href="#"><span>首页</span></a></li>
-            <li><a href="#"><span>Nodejs</span></a></li>
-            <li><a href="#"><span>JavaScript</span></a></li>
-            <li><a href="#"><span>Css</span></a></li>
-            <li><a href="#"><span>C#</span></a></li>
-            <li><a href="#"><span>闲聊</span></a></li>
+            {% if categories %}
+            {% for category in categories %}
+                <li><a style="cursor: pointer;" onclick="categoryClick('{{ category._id.toString() }}','{{ category.categoryname }}')"><span>{{ category.categoryname }}</span></a></li>
+            {% endfor %}
+            {% endif %}
         </ul>
         <!-- SOCIAL ICONS -->
         {% if userInfo._id %}

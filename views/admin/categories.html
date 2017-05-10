@@ -4,9 +4,24 @@
 {% endblock %}
 
 {% block main %}
-<div class="jumbotron">
-    <div class="container">
-        <h1>分类列表</h1>
-    </div>
+<div class="container-fluid">
+    <div style="text-align: right; margin-bottom: 10px;"><a href="/admin/category/add" class="btn btn-default"><i class="glyphicon glyphicon-plus"> 添加</i></a></div>
+    <table class="table table-striped table-bordered table-hover">
+        <thead style="background-color: #DEF0D8">
+        <tr>
+            <th>ID</th>
+            <th>分类名称</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+        <tr>
+            <td>{{ category._id.toString() }}</td>
+            <td>{{ category.categoryname }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
 </div>
 {% endblock %}

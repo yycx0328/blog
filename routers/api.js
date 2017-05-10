@@ -12,7 +12,7 @@ router.use(function (req,res,next) {
         message:''
     };
     next();
-})
+});
 
 router.post('/user/login',function (req,res,next) {
     var username = req.body.username;

@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block title %}
+分类列表
+{% endblock %}
+
+{% block main %}
+<div class="container-fluid">
+    <div id="categoryAddBox">
+        <div class="alert alert-success" role="alert" style="display: none;"></div>
+        <div class="alert alert-danger" role="alert" style="display: none;"></div>
+        <input type="text" class="form-control" name="categoryname" placeholder="请输入分类名称" />
+        <div style="margin-top: 10px;">
+            <button type="button" class="btn btn-default" onclick="addCategory()"><i class="glyphicon glyphicon-plus"> 添加</i></button>
+            <a class="btn btn-default" href="/admin/categories"><i class="glyphicon glyphicon-share-alt"> 返回列表页</i></a>
+        </div>
+    </div>
+</div>
+{% endblock %}

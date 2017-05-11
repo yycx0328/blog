@@ -18,11 +18,13 @@ router.get('/',function (req, res,next) {
     });
 });
 
-router.post('/category_index',function (req,res,next) {
-    console.log(req.body);
-    var categoryid = req.body.categoryid;
-    var categoryname = req.body.categoryname;
-    res.render('category_index',{categoryid:categoryid,categoryname:categoryname});
+router.get('/category_index',function (req,res,next) {
+    var categoryid = req.query.categoryid;
+    var categoryname = req.query.categoryname;
+    res.render('category_index',{
+        categoryid:categoryid,
+        categoryname:categoryname
+    });
 });
 
 module.exports = router;

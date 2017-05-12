@@ -101,7 +101,7 @@ router.post('/user/register',function (req, res,next) {
 
 router.get('/logout',function (req,res,next) {
     req.cookies.set('userInfo',null);
-    res.json(jsonResult);
+    res.render('index');
 });
 
 module.exports = router;

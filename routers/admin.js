@@ -10,11 +10,13 @@ var jsonResult = {
 };
 
 router.use(function (req,res,next) {
-    if(req.userInfo){
-        jsonResult.userInfo = req.userInfo;
+    console.log(req.userInfo);
+    if(!req.userInfo){
+        res.render('index');
+        return;
     }
     else{
-        res.render('index');
+        jsonResult.userInfo = req.userInfo;
     }
     next();
 });

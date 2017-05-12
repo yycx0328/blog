@@ -34,7 +34,7 @@ app.engine('html',swig.renderFile);
 // 设置cookies
 app.use(function (req,res,next) {
     req.cookies = new Cookies(req,res);
-    req.userInfo = {};
+    req.userInfo;
     if(req.cookies.get('userInfo')){
         try{
             req.userInfo = JSON.parse(req.cookies.get('userInfo'));

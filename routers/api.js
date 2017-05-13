@@ -101,7 +101,9 @@ router.post('/user/register',function (req, res,next) {
 
 router.get('/logout',function (req,res,next) {
     req.cookies.set('userInfo',null);
-    res.render('index');
+    jsonResult.code = 0;
+    jsonResult.message='退出成功';
+    res.json(jsonResult);
 });
 
 module.exports = router;

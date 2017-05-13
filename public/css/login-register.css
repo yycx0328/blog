@@ -76,6 +76,7 @@
 
 .login .modal-dialog{
     width: 350px;
+    margin: 120px auto;
 }
 .login .modal-footer{
     border-top: 0;

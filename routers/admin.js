@@ -2,6 +2,7 @@
  * Created by luyh on 2017/5/5.
  */
 var express = require('express');
+var User = require('../models/User');
 var Category = require('../models/Categories');
 var router = express.Router();
 var jsonResult = {
@@ -10,7 +11,6 @@ var jsonResult = {
 };
 
 router.use(function (req,res,next) {
-    console.log(req.userInfo);
     if(!req.userInfo){
         res.render('index');
         return;
@@ -30,28 +30,59 @@ router.get('/profile',function (req,res,next) {
 });
 
 router.get('/users',function (req,res,next) {
-    res.render('admin/users',jsonResult);
-});
-
-// 获取分类列表
-router.get('/categories',function (req,res,next) {
-    Category.find({},function (err,categories) {
-        // 查询时发生异常
+    User.find({},function (err,users) {
         if(err){
             jsonResult.message = '异常';
             res.json(jsonResult);
             return;
-        }
-        // 查询成功
-        if(categories){
+        }// 查询成功
+        if(users){
             jsonResult.code = 0;
             jsonResult.message='成功';
-            jsonResult.categories = categories;
+            jsonResult.users = users;
         }
         else{
             jsonResult.message = '无显示结果';
         }
-        res.render('admin/categories',jsonResult);
+        res.render('admin/users',jsonResult);
+    });
+});
+
+// 获取分类列表
+router.get('/categories',function (req,res,next) {
+    var page = Number(req.query.page || 1);
+    var limit = 10;
+    var pages = 0;
+    Category.count().then(function (count) {
+        // 计算总页数
+        pages = Math.ceil(count/limit);
+        // 取值不能大于pages
+        page = Math.min(page,pages);
+        // 取值不能小于1
+        page = Math.max(page,1);
+        var skip = (page-1)*limit;
+        var pageArr=[];
+        for (var i=1;i<=pages;i++){
+            pageArr.push(i);
+        }
+        Category.find().sort({_id:-1}).limit(limit).skip(skip).then(function (categories) {
+            // 查询成功
+            if(categories){
+                res.render('admin/categories',{
+                    userInfo:req.userInfo,
+                    categories:categories,
+                    count:count,
+                    pages:pages,
+                    pageArr:pageArr,
+                    limit:limit,
+                    page:page
+                });
+            }
+            else{
+                jsonResult.code = 1;
+                jsonResult.message = '无显示结果';
+            }
+        });
     });
 });
 

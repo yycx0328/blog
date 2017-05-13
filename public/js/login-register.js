@@ -61,7 +61,7 @@ $(function () {
             url:'/api/logout',
             dataType:'json',
             success:function (data) {
-                $registerBox.find('.colWarning').html(data.message);
+                console.log(data);
                 if(!data.code){
                     window.location.reload();
                 }

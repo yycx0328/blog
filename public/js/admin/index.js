@@ -15,6 +15,12 @@ $(function () {
         });
     });
 });
+//
+// $(document).ready(function() {
+//     $("#navlist li").click(function(){
+//         $(this).addClass("active");
+//     });
+// });
 
 // 添加分类
 function addCategory() {

@@ -5,8 +5,9 @@
     <meta http-equiv="content-language" content="en" />
     <meta name="description" content="javascript,css,nodejs,html5,blog" />
     <meta name="author" content="小皮蛋" />
-    <link rel="stylesheet" media="screen,projection" type="text/css" href="/public/css/main.css" />
-    <link rel="stylesheet" media="screen,projection" type="text/css" href="/public/css/skin.css" />
+    <!--<link rel="stylesheet" media="screen,projection" type="text/css" href="/public/css/main.css" />-->
+    <!--<link rel="stylesheet" media="screen,projection" type="text/css" href="/public/css/skin.css" />-->
+    <link href="/public/css/style.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/public/css/login-register.css" />
 
@@ -17,44 +18,59 @@
     <title>{% block title%}{% endblock %}</title>
 </head>
 
-<body id="hp"> <!-- APPLY CSS STYLES FOR HOMEPAGE -->
-<div id="main">
-    <!-- HEADER -->
-    <div id="header" class="box">
-        <p id="logo"><a href="./" title="[Go to homepage]"><img src="/public/design/logo.png" alt="" /></a></p>
-        <!-- NAVIGATION -->
-        <ul id="nav">
-            {% if categories %}
-            {% for category in categories %}
-                <li><a style="cursor: pointer;" href="category_index?categoryid={{ category._id.toString() }}"><span>{{ category.categoryname }}</span></a></li>
-            {% endfor %}
-            {% endif %}
-        </ul>
-        <!-- SOCIAL ICONS -->
-        {% if userInfo._id %}
-        <div id="userInfoBox">
-            <p class="nav-icons"><span style="color: #fff">欢迎，{{ userInfo.username}}</span><img src="/public/design/logout.png" alt="" /></p>
-        </div>
-        {% else %}
-        <p class="nav-icons"><a href="javascript:" onclick="openLoginModal()"><img src="/public/design/login.png" alt="" /></a></p>
-        {% endif %}
-    </div> <!-- /header -->
-    {% block main %}{% endblock %}
 
-    <!-- CONTACT -->
-    <div id="contact" style="text-align: center;">
-        <address>
+<body>
+<div class="main">
+    <div class="header">
+        <div class="header_resize">
+            <div class="logo"><a href="./" title="[Go to homepage]"><img src="/public/images/logo.png" alt="" /></a></div>
+            <div class="menu_nav">
+                <ul>
+                    {% if categories %}
+                    {% for category in categories %}
+                    <li>
+                        <a href="/{{ category._id.toString() }}">
+                            <span><span>{{ category.categoryname }}</span></span>
+                        </a>
+                    </li>
+                    {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="user-login">
+                {% if userInfo._id %}
+                <div id="userInfoBox">
+                    <p class="nav-icons"><span style="color: #fff">欢迎，{{ userInfo.username}}</span><img style="cursor: pointer;" src="/public/images/logout.png" alt="" /></p>
+                </div>
+                {% else %}
+                <p class="nav-icons"><a href="javascript:" onclick="openLoginModal()"><img src="/public/images/login.png" alt="" /></a></p>
+                {% endif %}
+            </div>
+            <div class="clr"></div>
+        </div>
+    </div>
+
+    <div class="hbg">&nbsp;</div>
+
+    <div class="content">
+        <div class="content_resize">
+            {% block main %}{% endblock %}
+            <div class="clr"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer_resize">
+            <address>
             小皮蛋工作室 <span>|</span>
             <a href="http://www.isofteam.com">www.isofteam.com</a> <span>|</span>
             <a href="mailto:lyh_oracle@hotmail.com">lyh_oracle@hotmail.com</a> <span>|</span>
             地址: 中国上海浦东新区 <span>|</span>
             电话: 136****6428
         </address>
-    </div> <!-- /contact -->
-    <!-- FOOTER -->
-    <div id="footer" class="box" style="text-align: center;">
-        <p>Copyright &copy;&nbsp;2017 <a href="#">isofteam</a>, All Rights Reserved &reg;</p>
-    </div> <!-- /footer -->
+            <div class="clr"></div>
+        </div>
+    </div>
 
     <div class="modal fade login" id="loginModal">
         <div class="modal-dialog login animated">
@@ -113,6 +129,6 @@
             </div>
         </div>
     </div>
-</div> <!-- /main -->
+</div>
 </body>
 </html>

@@ -19,6 +19,9 @@
             <th>标题</th>
             <th>简介</th>
             <th>内容</th>
+            <th>创建者</th>
+            <th>创建时间</th>
+            <th>浏览量</th>
             <th>操作</th>
         </tr>
         </thead>
@@ -30,6 +33,9 @@
             <td>{{ content.title }}</td>
             <td>{{ content.abstract }}</td>
             <td>{{ content.text }}</td>
+            <td>{{ content.user.username }}</td>
+            <td>{{ content.createtime|date('Y-m-d H:i:s',-8*60) }}</td>
+            <td>{{ content.views }}</td>
             <td>
                 <a href="/admin/content/view?id={{ content._id.toString() }}">预览</a>
                 <a href="/admin/content/update?id={{ content._id.toString() }}">修改</a>
@@ -44,7 +50,7 @@
         <ul class="pagination" style="margin-bottom: 20px;">
             {% if page<=1 %}
             <li class="disabled">
-                <a href="/admin/contents?page=1" aria-label="Previous">
+                <a href="javascript:" aria-label="Previous">
                     <span aria-hidden="true">上一页</span>
                 </a>
             </li>
@@ -61,7 +67,7 @@
 
             {% if page>=pages %}
             <li class="disabled">
-                <a href="/admin/contents?page={{ pages }}" aria-label="Next">
+                <a href="javascript:" aria-label="Next">
                     <span aria-hidden="true">下一页</span>
                 </a>
             </li>

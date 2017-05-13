@@ -12,8 +12,8 @@ var jsonResult = {
 };
 
 router.use(function (req,res,next) {
-    if(!req.userInfo){
-        res.render('index');
+    if(!req.userInfo || !Boolean(req.userInfo.isAdmin)){
+        res.render('admin/forbid');
         return;
     }
     else{
@@ -215,7 +215,7 @@ router.get('/contents',function (req,res,next) {
         for (var i=1;i<=pages;i++){
             pageArr.push(i);
         }
-        Content.find().sort({_id:-1}).limit(limit).skip(skip).populate('category').then(function (contents) {
+        Content.find().sort({_id:-1}).limit(limit).skip(skip).populate('category').populate('user').then(function (contents) {
             // 查询成功
             if(contents){
                 res.render('admin/contents',{
@@ -279,9 +279,9 @@ router.post('/content/add',function (req,res,next) {
         res.json(jsonResult);
         return;
     }
-
     new Content({
         category:category,
+        user:req.userInfo._id,
         title:title,
         abstract:abstract,
         text:text

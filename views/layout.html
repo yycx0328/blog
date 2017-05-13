@@ -5,11 +5,12 @@
     <meta http-equiv="content-language" content="en" />
     <meta name="description" content="javascript,css,nodejs,html5,blog" />
     <meta name="author" content="小皮蛋" />
-    <!--<link rel="stylesheet" media="screen,projection" type="text/css" href="/public/css/main.css" />-->
-    <!--<link rel="stylesheet" media="screen,projection" type="text/css" href="/public/css/skin.css" />-->
-    <link href="/public/css/style.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/public/css/login-register.css" />
+
+    <link rel="stylesheet" href="/public/css/reset.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/public/css/style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/public/css/grid.css" type="text/css" media="screen">
 
     <script type="text/javascript" src="/public/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="/public/js/bootstrap.min.js"></script>
@@ -18,117 +19,174 @@
     <title>{% block title%}{% endblock %}</title>
 </head>
 
-
-<body>
-<div class="main">
-    <div class="header">
-        <div class="header_resize">
-            <div class="logo"><a href="./" title="[Go to homepage]"><img src="/public/images/logo.png" alt="" /></a></div>
-            <div class="menu_nav">
-                <ul>
+<body id="page3">
+<!--==============================header=================================-->
+<header>
+    <div class="border-bot">
+        <div class="main">
+            <h1><a href="index.html">isofteam</a></h1>
+            <nav>
+                <ul class="menu">
+                    <li><a class="active" href="/">首页</a></li>
                     {% if categories %}
                     {% for category in categories %}
-                    <li>
-                        <a href="/{{ category._id.toString() }}">
-                            <span><span>{{ category.categoryname }}</span></span>
-                        </a>
-                    </li>
+                        <li><a href="/{{ category._id.toString() }}">{{ category.categoryname }}</a></li>
                     {% endfor %}
                     {% endif %}
                 </ul>
-            </div>
-            <div class="user-login">
-                {% if userInfo._id %}
-                <div id="userInfoBox">
-                    <p class="nav-icons"><span style="color: #fff">欢迎，{{ userInfo.username}}</span><img style="cursor: pointer;" src="/public/images/logout.png" alt="" /></p>
-                </div>
-                {% else %}
-                <p class="nav-icons"><a href="javascript:" onclick="openLoginModal()"><img src="/public/images/login.png" alt="" /></a></p>
-                {% endif %}
-            </div>
-            <div class="clr"></div>
+            </nav>
+            <div class="clear"></div>
         </div>
     </div>
+</header>
 
-    <div class="hbg">&nbsp;</div>
+<!--==============================content================================-->
+<section id="content">
+    <div class="main">
+        <div class="container_12">
+            <div class="wrapper">
+                <article class="grid_8">
+                    <h3>文章一</h3>
+                    <p class="p2">文章简介...</p>
+                    <p class="p3"><a class="link-1" href="#">阅读全文</a></p>
+                    <hr />
+                    <h3>文章二</h3>
+                    <p class="p2">文章简介...</p>
+                    <p class="p3"><a class="link-1" href="#">阅读全文</a></p>
+                    <hr />
+                    <h3>文章三</h3>
+                    <p class="p2">文章简介...</p>
+                    <p class="p3"><a class="link-1" href="#">阅读全文</a></p>
+                    <hr />
+                    <h3>文章四</h3>
+                    <p class="p2">文章简介...</p>
+                    <p class="p3"><a class="link-1" href="#">阅读全文</a></p>
+                    <hr />
+                </article>
+                <article class="grid_4">
+                    <div class="indent-left">
+                        <div class="right-user">
+                            <div class="prev-indent-bot" style="margin-left:40px;">用户信息</div>
+                            {% if userInfo._id %}
 
-    <div class="content">
-        <div class="content_resize">
-            {% block main %}{% endblock %}
-            <div class="clr"></div>
-        </div>
-    </div>
-
-    <div class="footer">
-        <div class="footer_resize">
-            <address>
-            小皮蛋工作室 <span>|</span>
-            <a href="http://www.isofteam.com">www.isofteam.com</a> <span>|</span>
-            <a href="mailto:lyh_oracle@hotmail.com">lyh_oracle@hotmail.com</a> <span>|</span>
-            地址: 中国上海浦东新区 <span>|</span>
-            电话: 136****6428
-        </address>
-            <div class="clr"></div>
-        </div>
-    </div>
-
-    <div class="modal fade login" id="loginModal">
-        <div class="modal-dialog login animated">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">用户登录</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="box">
-                        <div class="content">
-                            <div class="social">
-                                <a class="circle github" href="/auth/github">
-                                    <i class="fa fa-github fa-fw"></i>
-                                </a>
-                                <a id="google_login" class="circle google" href="/auth/google_oauth2">
-                                    <i class="fa fa-google-plus fa-fw"></i>
-                                </a>
-                                <a id="facebook_login" class="circle facebook" href="/auth/facebook">
-                                    <i class="fa fa-facebook fa-fw"></i>
-                                </a>
+                            <div id="userInfoBox" style="margin-top: 20px;">
+                                <p>{{ userInfo.username }}，欢迎您！</p>
+                                <p>您共发表过 12 次评论</p>
+                                {% if userInfo.isAdmin %}
+                                    <p>您是管理员<a href="/admin">点击此处</a>可以登录管理后台</p>
+                                {% endif %}
+                                <p><a id="logout" href="javascript:">点击此处</a>退出登录</p>
                             </div>
-                            <div class="division">
-                                <div class="line l"></div>
-                                <span>or</span>
-                                <div class="line r"></div>
-                            </div>
-                            <div class="error"></div>
-                            <div id="loginBox" class="form loginBox">
-                                <input class="form-control" type="text" placeholder="用户名" name="username">
-                                <input class="form-control" type="password" placeholder="密码" name="password">
-                                <button class="btn btn-default btn-login" value="login">登录</button>
-                            </div>
+                            {% else %}
+                            <div style="margin-top: 20px;">您尚未登录，<a href="javascript:" onclick="openLoginModal()">点击此处</a>登录</div>
+                            {% endif %}
                         </div>
+                        <div class="right-new">
+                            <div class="prev-indent-bot" style="margin-left:40px;">最新发表</div>
+                            <ul class="list-1">
+                                <li><a href="#">文章一</a></li>
+                                <li><a href="#">Invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </a></li>
+                                <li><a href="#">文章二</a></li>
+                                <li><a href="#">文章三</a></li>
+                            </ul>
+                            <a class="link-1 margin-left" href="#">更多</a>
+                        </div>
+                        <div class="right-hot">
+                            <div class="prev-indent-bot" style="margin-left:40px;">最热发表</div>
+                            <ul class="list-1">
+                                <li><a href="#">文章一</a></li>
+                                <li><a href="#">Invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </a></li>
+                                <li><a href="#">文章二</a></li>
+                                <li><a href="#">文章三</a></li>
+                            </ul>
+                            <a class="link-1 margin-left" href="#">更多</a>
+                        </div>
+
                     </div>
-                    <div class="box">
-                        <div id="registerBox" class="content form registerBox" style="display:none;">
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--==============================footer=================================-->
+<footer>
+    <div class="main">
+        <div class="container_12">
+            <div class="wrapper">
+                <div class="grid_3">
+                    <div class="spacer-1">
+                        <a href="index.html"><img src="/public/images/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="grid_5">
+                    <div class="indent-top2">
+                        <p class="prev-indent-bot">&copy; 2017 Interior <a rel="n>follow" href="http://www.isofteam.com/" target="_blank">小皮蛋工作室</a> | <a rel="nofollow" href="http://www.isofteam.com">isofteam</a></p>
+                        QQ: 1289927096  Email: <a href="javascript:">lyh_oracle@hotmail.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div class="modal fade login" id="loginModal">
+    <div class="modal-dialog login animated">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">用户登录</h4>
+            </div>
+            <div class="modal-body">
+                <div class="box">
+                    <div class="content">
+                        <div class="social">
+                            <a class="circle github" href="/auth/github">
+                                <i class="fa fa-github fa-fw"></i>
+                            </a>
+                            <a id="google_login" class="circle google" href="/auth/google_oauth2">
+                                <i class="fa fa-google-plus fa-fw"></i>
+                            </a>
+                            <a id="facebook_login" class="circle facebook" href="/auth/facebook">
+                                <i class="fa fa-facebook fa-fw"></i>
+                            </a>
+                        </div>
+                        <div class="division">
+                            <div class="line l"></div>
+                            <span>or</span>
+                            <div class="line r"></div>
+                        </div>
+                        <div class="error"></div>
+                        <div id="loginBox" class="form loginBox">
                             <input class="form-control" type="text" placeholder="用户名" name="username">
                             <input class="form-control" type="password" placeholder="密码" name="password">
-                            <input class="form-control" type="password" placeholder="确认密码" name="repassword">
-                            <button class="btn btn-default btn-register" value="login">注册</button>
+                            <button class="btn btn-default btn-login" value="login">登录</button>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <div class="forgot login-footer">
+                <div class="box">
+                    <div id="registerBox" class="content form registerBox" style="display:none;">
+                        <input class="form-control" type="text" placeholder="用户名" name="username">
+                        <input class="form-control" type="password" placeholder="密码" name="password">
+                        <input class="form-control" type="password" placeholder="确认密码" name="repassword">
+                        <button class="btn btn-default btn-register" value="login">注册</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="forgot login-footer">
                             <span>还没注册？
                                  <a href="javascript: showRegisterForm();">马上注册</a>
                             </span>
-                    </div>
-                    <div class="forgot register-footer" style="display:none">
-                        <span>已有账号？</span>
-                        <a href="javascript: showLoginForm();">马上登录</a>
-                    </div>
+                </div>
+                <div class="forgot register-footer" style="display:none">
+                    <span>已有账号？</span>
+                    <a href="javascript: showLoginForm();">马上登录</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 </body>
 </html>

@@ -8,7 +8,6 @@
 $(function () {
     $loginBox = $('#loginBox');
     $registerBox = $('#registerBox');
-    $userInfoBox = $('#userInfoBox');
 
     // 登录按钮
     $loginBox.find('button').on('click',function () {
@@ -55,7 +54,7 @@ $(function () {
         });
     });
 
-    $userInfoBox.find('img').on('click',function () {
+    $('#logout').on('click',function () {
         $.ajax({
             type:'get',
             url:'/api/logout',

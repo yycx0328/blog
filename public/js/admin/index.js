@@ -9,7 +9,7 @@ $(function () {
             dataType:'json',
             success:function (data) {
                 if(!data.code){
-                    window.location = '../';
+                    window.location = '/';
                 }
             }
         });

@@ -3,7 +3,8 @@
  */
 var express = require('express');
 var User = require('../models/User');
-var Category = require('../models/Categories');
+var Category = require('../models/Category');
+var Content = require('../models/Content');
 var router = express.Router();
 var jsonResult = {
     code:-1,
@@ -192,6 +193,107 @@ router.post('/category/delete',function (req,res,next) {
         }else{
             jsonResult.code = 0;
             jsonResult.message = '删除成功';
+            res.json(jsonResult);
+        }
+    });
+});
+
+// 获取文章列表
+router.get('/contents',function (req,res,next) {
+    var page = Number(req.query.page || 1);
+    var limit = 10;
+    var pages = 0;
+    Content.count().then(function (count) {
+        // 计算总页数
+        pages = Math.ceil(count/limit);
+        // 取值不能大于pages
+        page = Math.min(page,pages);
+        // 取值不能小于1
+        page = Math.max(page,1);
+        var skip = (page-1)*limit;
+        var pageArr=[];
+        for (var i=1;i<=pages;i++){
+            pageArr.push(i);
+        }
+        Content.find().sort({_id:-1}).limit(limit).skip(skip).populate('category').then(function (contents) {
+            // 查询成功
+            if(contents){
+                res.render('admin/contents',{
+                    userInfo:req.userInfo,
+                    contents:contents,
+                    count:count,
+                    pages:pages,
+                    pageArr:pageArr,
+                    limit:limit,
+                    page:page
+                });
+            }
+            else{
+                jsonResult.code = 1;
+                jsonResult.message = '无显示结果';
+            }
+        });
+    });
+});
+
+// 添加文章渲染页
+router.get('/content/add',function (req,res,next) {
+    Category.find().then(function (categories) {
+        res.render('admin/content_add',{
+            userInfo:req.userInfo,
+            categories:categories
+        });
+    });
+});
+
+// 添加文章操作
+router.post('/content/add',function (req,res,next) {
+    var category = req.body.category;
+    var title = req.body.title;
+    var abstract = req.body.abstract;
+    var text = req.body.text;
+    if(category == ''){
+        jsonResult.code = 1;
+        jsonResult.message = '请选择分类';
+        res.json(jsonResult);
+        return;
+    }
+
+    if(title == ''){
+        jsonResult.code = 2;
+        jsonResult.message = '文章标题不能为空';
+        res.json(jsonResult);
+        return;
+    }
+
+    if(abstract == ''){
+        jsonResult.code = 3;
+        jsonResult.message = '文章简介不能为空';
+        res.json(jsonResult);
+        return;
+    }
+
+    if(text == ''){
+        jsonResult.code = 4;
+        jsonResult.message = '文章内容不能为空';
+        res.json(jsonResult);
+        return;
+    }
+
+    new Content({
+        category:category,
+        title:title,
+        abstract:abstract,
+        text:text
+    }).save().then(function (newContent) {
+        if(newContent){
+            jsonResult.code = 0;
+            jsonResult.message = '保存成功';
+            res.json(jsonResult);
+        }
+        else{
+            jsonResult.code = 5;
+            jsonResult.message = '保存失败';
             res.json(jsonResult);
         }
     });

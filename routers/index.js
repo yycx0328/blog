@@ -3,7 +3,7 @@
  */
 var express = require('express');
 var router = express.Router();
-var Category = require('../models/Categories');
+var Category = require('../models/Category');
 var jsonResult = {
     code:-1,
     message:'初始化异常'

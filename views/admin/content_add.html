@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+{% block title %}
+文章添加
+{% endblock %}
+
+{% block main %}
+<ol class="breadcrumb">
+    <li><a href="/admin">首页</a></li>
+    <li><a href="/admin/contents">文章管理</a></li>
+    <li class="active">添加文章</li>
+</ol>
+<div class="container-fluid">
+    <div id="contentAddBox">
+    <div class="alert alert-success" role="alert" style="display: none;"></div>
+    <div class="alert alert-danger" role="alert" style="display: none;"></div>
+        <div class="form-group">
+            <label for="category">分类：</label>
+            <select name="category" id="category" class="form-control">
+                {% if categories %}
+                {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.categoryname }}</option>
+                {% endfor %}
+                {% endif %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="title">标题：</label>
+            <input type="text" class="form-control" id="title" placeholder="请输入文章标题" name="title" />
+        </div>
+
+        <div class="form-group">
+            <label for="abstract">简介：</label>
+            <textarea class="form-control" id="abstract" placeholder="请输入文章简介" name="abstract" rows="5"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="text">正文：</label>
+            <textarea class="form-control" id="text" placeholder="请输入文章正文" name="text" rows="10"></textarea>
+        </div>
+        <div style="margin-top: 10px;">
+            <button type="button" class="btn btn-default" onclick="addContent()"><i class="glyphicon glyphicon-plus"> 添加</i></button>
+            <a class="btn btn-default" href="/admin/contents"><i class="glyphicon glyphicon-share-alt"> 返回列表页</i></a>
+        </div>
+    </div>
+</div>
+{% endblock %}

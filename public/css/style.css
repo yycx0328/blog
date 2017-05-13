@@ -244,6 +244,16 @@ h6 {color:#00989d; font-weight:normal;}
 	margin-bottom:14px;
 }
 
+.alert-gray{
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 4px;
+	color: #3c763d;
+	background-color: #f6f6f6;
+	border-color: #f9f9f9;
+	font-size: 18px;
+}
+
 dl span {float:left; width:80px;}
 
 /***** contact form *****/

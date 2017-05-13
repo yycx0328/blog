@@ -81,6 +81,7 @@
 
 .container_12 .grid_8 {
 	width:620px;
+	min-height: 1px;
 }
 
 .container_12 .grid_9 {

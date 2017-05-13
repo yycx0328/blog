@@ -142,31 +142,10 @@ h1 {
 }
 .items {display:none;}
 
-.pagination {
-	position:absolute;
-	left:439px;
-	bottom:20px;
-	z-index:99;
-}
-	.pagination li {
-		float:left;
-		padding-right:8px;
-	}
-	.pagination a {
-		display:block;
-		width:22px;
-		height:22px;
-		background:url(../images/slider-pagination.png) right top no-repeat;
-		cursor:pointer;
-	}
-	.pagination li.current a {cursor:default;}
-	.pagination li.current a,
-	.pagination a:hover {background-position:left top;}
-
 /*********************************content*************************************/
 #content {
 	width:100%; 
-	padding:50px 0 53px;
+	padding:50px 0 30px;
 	background:url(../images/content-tail.gif) center top repeat;
 	position:relative;
 	z-index:1;

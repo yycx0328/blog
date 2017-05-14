@@ -12,12 +12,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node app.js",
-    "postinstall": "./node_modules/bower/bin/bower install"
-  },
-  "engines": {
-    "node": "7.7.1",
-    "npm": "4.1.2"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",

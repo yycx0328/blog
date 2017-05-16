@@ -75,16 +75,17 @@
                             <div style="margin-top: 20px;">您尚未登录，<a href="javascript:" onclick="openLoginModal()">点击此处</a>登录</div>
                             {% endif %}
                         </div>
+                        {% if newestContents && newestContents.length>0 %}
                         <div class="right-new">
                             <div class="prev-indent-bot" style="margin-left:40px;">最新发表</div>
                             <ul class="list-1">
-                                <li><a href="#">文章一</a></li>
-                                <li><a href="#">Invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </a></li>
-                                <li><a href="#">文章二</a></li>
-                                <li><a href="#">文章三</a></li>
+                                {% for newContent in newestContents %}
+                                <li><a href="/detail?content={{ newContent.id }}">{{ newContent.title }}</a></li>
+                                {% endfor %}
                             </ul>
-                            <a class="link-1 margin-left" href="#">更多</a>
+                            <a class="link-1 margin-left" href="/">更多</a>
                         </div>
+                        {% endif %}
                         <div class="right-hot">
                             <div class="prev-indent-bot" style="margin-left:40px;">最热发表</div>
                             <ul class="list-1">

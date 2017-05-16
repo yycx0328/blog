@@ -50,12 +50,15 @@ app.use('/api',require('./routers/api'));
 
 // 连接数据库
 mongoose.connect(util.format('mongodb://%s:%s/%s',db.host,db.port,db.database),function (err) {
+// mongoose.connect('mongodb://vanluu:123456@ds143241.mlab.com:43241/van-blog',function (err) {
    if(err){
+       console.log(err);
        console.log('连接数据库失败！');
    }
     else{
        console.log('连接数据库成功！');
-        // 启动服务并监听端口
+       // 启动服务并监听端口
+       // app.listen(43241);
        app.listen(svr.port,svr.host,function (err) {
            if(err){
                console.log('服务启动失败：'+err);

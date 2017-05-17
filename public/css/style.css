@@ -291,6 +291,8 @@ dl span {float:left; width:80px;}
 		
 /****************************footer************************/
 footer {
+	position: absolute;
+	bottom: 0px;
 	width:100%; 
 	padding:0px;
 	background:url(../images/footer-tail.gif) left top repeat-x;

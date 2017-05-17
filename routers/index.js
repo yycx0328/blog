@@ -54,4 +54,8 @@ router.get('/',function (req, res,next) {
     });
 });
 
+router.get('/detail',function (req,res,nex) {
+    res.render('detail');
+});
+
 module.exports = router;

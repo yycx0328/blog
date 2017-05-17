@@ -4,5 +4,15 @@
 {% endblock %}
 
 {% block main %}
-
+<span style="text-align: center"><h3>{{ content.title }}</h3></span>
+<p style="text-align: center">
+    <span style="margin-right: 10px;">作者：<a href="/user_contents">{{ content.user.username }}</a></span>
+    <span style="margin: 0px 10px;">阅读量：{{ content.views }}</span>
+    <span style="margin: 0px 10px;">评论数：10</span>
+    <span style="margin: 0px 10px;">创建时间：{{  content.createtime|date('Y-m-d H:i:s',-8*60) }}</span>
+    <!--<span style="margin: 0px 10px;">评论数：{{ content.comments.length }}</span>-->
+</p>
+<p style="text-indent: 2em">
+    {{ content.text }}
+</p>
 {% endblock %}

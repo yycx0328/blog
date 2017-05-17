@@ -9,36 +9,37 @@ var jsonResult = {
     code:-1,
     message:'初始化异常'
 };
+var data = {};
 
 router.use(function (req,res,next) {
     var top = 4;
-    Content.find().sort({createtime:-1}).limit(top).then(function (contents) {
-        req.newestContents = contents;
+    data.userInfo=req.userInfo;
+    Category.find().then(function (categories) {
+        data.categories = categories;
+        return Content.find().sort({createtime:-1}).limit(top);
+    }).then(function (contents) {
+        data.newContents=contents;
+        return Content.find().sort({views:-1}).limit(top);
+    }).then(function (hotContents) {
+        data.hotContents = hotContents;
         next();
     });
 });
 
 router.get('/',function (req, res,next) {
-    var data = {
-        userInfo:req.userInfo,
-        newestContents:req.newestContents,
-        category:req.query.category||'',
-        categories:[],
-        count:0,
-        page:Number(req.query.page||1),
-        limit:4,
-        pages:0,
-        pageArr:[],
-        contents:[]
-    };
+    data.category=req.query.category||'';
+    data.count=0;
+    data.page=Number(req.query.page||1);
+    data.limit=4;
+    data.pages=0;
+    data.pageArr=[];
+    data.contents=[];
+
     var where={};
     if(data.category!=''){
         where.category = data.category;
     }
-    Category.find().then(function (categories) {
-        data.categories = categories;
-        return Content.count(where);
-    }).then(function (count) {
+    Content.count(where).then(function (count) {
         data.count = count;
         data.pages = Math.ceil(data.count/data.limit);
         for (var i=1; i<=data.pages;i++){
@@ -54,8 +55,12 @@ router.get('/',function (req, res,next) {
     });
 });
 
-router.get('/detail',function (req,res,nex) {
-    res.render('detail');
+router.get('/detail',function (req,res,next) {
+    var contentid = req.query.id;
+    Content.findOne({_id:contentid}).populate('user').then(function (content) {
+        data.content = content;
+        res.render('detail',data);
+    });
 });
 
 module.exports = router;

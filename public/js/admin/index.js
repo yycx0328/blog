@@ -99,7 +99,7 @@ function addContent() {
             category:$('#category option:selected').val(),
             title:$('#title').val(),
             abstract:$('#abstract').val(),
-            text:$('#text').val()
+            text:$('.nicEdit-main').html()
         },
         dataType:'json',
         success:function (data) {

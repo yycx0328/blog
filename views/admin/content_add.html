@@ -43,4 +43,12 @@
         </div>
     </div>
 </div>
+
+<script src="/public/js/nicEdit.js" type="text/javascript"></script>
+<script type="text/javascript">
+    bkLib.onDomLoaded(function() {
+        new nicEditor({fullPanel : true}).panelInstance('text');
+    });
+</script>
+
 {% endblock %}

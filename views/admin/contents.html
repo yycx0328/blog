@@ -32,7 +32,7 @@
             <td>{{ content.category.categoryname }}</td>
             <td>{{ content.title }}</td>
             <td>{{ content.abstract }}</td>
-            <td>{{ content.text }}</td>
+            <td>{% autoescape %}{{ content.text }}{% endautoescape %}</td>
             <td>{{ content.user.username }}</td>
             <td>{{ content.createtime|date('Y-m-d H:i:s',-8*60) }}</td>
             <td>{{ content.views }}</td>

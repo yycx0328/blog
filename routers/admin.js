@@ -248,6 +248,7 @@ router.get('/content/add',function (req,res,next) {
 
 // 添加文章操作
 router.post('/content/add',function (req,res,next) {
+    console.log(req.body);
     var category = req.body.category;
     var title = req.body.title;
     var abstract = req.body.abstract;

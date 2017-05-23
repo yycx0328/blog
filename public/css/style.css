@@ -238,7 +238,29 @@ h6 {color:#00989d; font-weight:normal;}
 }
 
 .comments-send{
+	height: 32px;
+	margin-bottom: 5px;
 	background: url("/public/images/send-comment.png") 0 0 no-repeat;
+}
+
+.comments-send span{
+	height:32px;
+	line-height: 32px;
+	font-size: 18px;
+	margin: 10px 0px 0px 45px;
+}
+
+.comments-list{
+	height: 32px;
+	margin-bottom: 5px;
+	background: url("/public/images/list-comment.png") 0 0 no-repeat;
+}
+
+.comments-list span{
+	height:32px;
+	line-height: 32px;
+	font-size: 18px;
+	margin: 10px 0px 0px 45px;
 }
 
 dl span {float:left; width:80px;}

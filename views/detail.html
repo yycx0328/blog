@@ -16,20 +16,18 @@
 </p>
 <div class="comments">
     <div class="comments-send">
-        <strong>发表评论：</strong>
+        <span>发表评论：</span>
     </div>
     {% if userInfo._id %}
-    <textarea rows="2" class="form-control"></textarea>
+    <textarea rows="3" class="form-control"></textarea>
     <div style="text-align: right; margin-top: 10px;"><button class="btn btn-primary">发表</button></div>
     {% else %}
     <div class="alert alert-danger" role="alert" style="text-align: center;">
         您尚未登录，<a href="javascript:" onclick="openLoginModal()" class="alert-link">请先登录</a>后再发表评论！
     </div>
     {% endif %}
-    <div style="margin-top: 20px;">
-        <ol class="breadcrumb">
-            <li><strong>发表列表：</strong></li>
-        </ol>
+    <div class="comments-list">
+        <span>评论列表：</span>
     </div>
 </div>
 {% endblock %}

@@ -58,7 +58,10 @@ router.get('/',function (req, res,next) {
 router.get('/detail',function (req,res,next) {
     var contentid = req.query.id;
     Content.findOne({_id:contentid}).populate('user').then(function (content) {
-        data.content = content;
+        content.views +=1;
+        return content.save();
+    }).then(function (newContent) {
+        data.content = newContent;
         res.render('detail',data);
     });
 });

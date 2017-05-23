@@ -233,6 +233,14 @@ h6 {color:#00989d; font-weight:normal;}
 	font-size: 18px;
 }
 
+.alert-gray span{
+	font-size: 12px;
+}
+
+.comments-send{
+	background: url("/public/images/send-comment.png") 0 0 no-repeat;
+}
+
 dl span {float:left; width:80px;}
 
 /***** contact form *****/

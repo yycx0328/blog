@@ -10,9 +10,26 @@
     <span style="margin: 0px 10px;">阅读量：{{ content.views }}</span>
     <span style="margin: 0px 10px;">评论数：10</span>
     <span style="margin: 0px 10px;">创建时间：{{  content.createtime|date('Y-m-d H:i:s',-8*60) }}</span>
-    <!--<span style="margin: 0px 10px;">评论数：{{ content.comments.length }}</span>-->
 </p>
 <p style="text-indent: 2em">
     {% autoescape %}{{ content.text }}{% endautoescape %}
 </p>
+<div class="comments">
+    <div class="comments-send">
+        <strong>发表评论：</strong>
+    </div>
+    {% if userInfo._id %}
+    <textarea rows="2" class="form-control"></textarea>
+    <div style="text-align: right; margin-top: 10px;"><button class="btn btn-primary">发表</button></div>
+    {% else %}
+    <div class="alert alert-danger" role="alert" style="text-align: center;">
+        您尚未登录，<a href="javascript:" onclick="openLoginModal()" class="alert-link">请先登录</a>后再发表评论！
+    </div>
+    {% endif %}
+    <div style="margin-top: 20px;">
+        <ol class="breadcrumb">
+            <li><strong>发表列表：</strong></li>
+        </ol>
+    </div>
+</div>
 {% endblock %}

@@ -224,6 +224,7 @@ h6 {color:#00989d; font-weight:normal;}
 }
 
 .alert-gray{
+	height: 45px;
 	padding: 10px;
 	margin-bottom: 10px;
 	border-radius: 4px;
@@ -235,6 +236,7 @@ h6 {color:#00989d; font-weight:normal;}
 
 .alert-gray span{
 	font-size: 12px;
+	line-height: 35px;
 }
 
 .comments-send{

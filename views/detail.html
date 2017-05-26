@@ -19,8 +19,9 @@
         <span>发表评论：</span>
     </div>
     {% if userInfo._id %}
-    <textarea rows="3" class="form-control"></textarea>
-    <div style="text-align: right; margin-top: 10px;"><button class="btn btn-primary">发表</button></div>
+    <textarea id="text_comment" rows="3" class="form-control"></textarea>
+    <input id="content_id" type="hidden" value="{{ content._id.toString() }}" />
+    <div style="text-align: right; margin-top: 10px;"><button onclick="send_comment()" class="btn btn-primary">发表</button></div>
     {% else %}
     <div class="alert alert-danger" role="alert" style="text-align: center;">
         您尚未登录，<a href="javascript:" onclick="openLoginModal()" class="alert-link">请先登录</a>后再发表评论！

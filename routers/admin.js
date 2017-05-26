@@ -215,7 +215,7 @@ router.get('/contents',function (req,res,next) {
         for (var i=1;i<=pages;i++){
             pageArr.push(i);
         }
-        Content.find().sort({_id:-1}).limit(limit).skip(skip).populate('category').populate('user').then(function (contents) {
+        Content.find().sort({_id:-1}).limit(limit).skip(skip).populate(['category','user']).then(function (contents) {
             // 查询成功
             if(contents){
                 res.render('admin/contents',{

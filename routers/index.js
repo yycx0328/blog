@@ -5,6 +5,7 @@ var express = require('express');
 var router = express.Router();
 var Category = require('../models/Category');
 var Content = require('../models/Content');
+var Comment = require('../models/Comment');
 var jsonResult = {
     code:-1,
     message:'初始化异常'
@@ -48,6 +49,7 @@ router.get('/',function (req, res,next) {
         data.page = Math.min(data.page,data.pages);
         data.page = Math.max(data.page,1);
         var skip = (data.page-1)*data.limit;
+        console.log(data);
         return Content.find(where).limit(data.limit).skip(skip).populate(['category','user']).sort({createtime:-1});
     }).then(function (contents) {
         data.contents = contents;
@@ -63,6 +65,26 @@ router.get('/detail',function (req,res,next) {
     }).then(function (newContent) {
         data.content = newContent;
         res.render('detail',data);
+    });
+});
+
+router.post('/send_comment',function (req,res,next) {
+    var content_id = req.body.content_id;
+    var text = req.body.text_comment;
+    var user_id = req.userInfo._id;
+    var comment = new Comment({
+        content:content_id,
+        user:user_id,
+        text:text
+    });
+    comment.save().then(function (newComment) {
+        console.log(newComment);
+        Comment.find().sort({createtime:-1}).populate(['content','user']).then(function (comments) {
+            console.log(comments);
+            jsonResult.code = 0;
+            jsonResult.message = "评论成功";
+            res.json(comments);
+        });
     });
 });
 

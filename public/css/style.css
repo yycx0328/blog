@@ -252,13 +252,13 @@ h6 {color:#00989d; font-weight:normal;}
 	margin: 10px 0px 0px 45px;
 }
 
-.comments-list{
+.comments-list-title{
 	height: 32px;
 	margin-bottom: 5px;
 	background: url("/public/images/list-comment.png") 0 0 no-repeat;
 }
 
-.comments-list span{
+.comments-list-title span{
 	height:32px;
 	line-height: 32px;
 	font-size: 18px;
@@ -345,4 +345,9 @@ footer {
 	}
 	.right-hot{
 		background: url('/public/images/hot.png') 0 0 no-repeat
+	}
+
+	.comments-list span{
+		line-height: 32px;
+		margin: 10px;
 	}

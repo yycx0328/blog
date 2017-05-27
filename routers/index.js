@@ -49,7 +49,6 @@ router.get('/',function (req, res,next) {
         data.page = Math.min(data.page,data.pages);
         data.page = Math.max(data.page,1);
         var skip = (data.page-1)*data.limit;
-        console.log(data);
         return Content.find(where).limit(data.limit).skip(skip).populate(['category','user']).sort({createtime:-1});
     }).then(function (contents) {
         data.contents = contents;
@@ -78,12 +77,11 @@ router.post('/send_comment',function (req,res,next) {
         text:text
     });
     comment.save().then(function (newComment) {
-        console.log(newComment);
-        Comment.find().sort({createtime:-1}).populate(['content','user']).then(function (comments) {
-            console.log(comments);
+        Comment.find({content:content_id}).sort({createtime:-1}).populate(['user']).then(function (comments) {
             jsonResult.code = 0;
             jsonResult.message = "评论成功";
-            res.json(comments);
+            jsonResult.comments = comments;
+            res.json(jsonResult);
         });
     });
 });

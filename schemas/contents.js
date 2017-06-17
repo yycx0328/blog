@@ -32,5 +32,6 @@ module.exports = new mongoose.Schema({
     views:{
         type:Number,
         default:0
-    }
+    },
+    comments:[]
 });

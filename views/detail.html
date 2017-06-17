@@ -25,8 +25,8 @@
         <!--<div style="text-align: right; margin-top: 10px;"><input type="submit" class="btn btn-primary" value="发表" /></div>-->
     <!--</form>-->
 
-    <textarea name="text_comment" rows="3" class="form-control"></textarea>
-    <input type="hidden" name="content_id" value="{{ content._id.toString() }}" />
+    <textarea name="comment" rows="3" class="form-control"></textarea>
+    <input type="hidden" name="contentid" value="{{ content._id.toString() }}" />
     <div style="text-align: right; margin-top: 10px;"><input type="button" onclick="send_comment()" class="btn btn-primary" value="发表" /></div>
     {% else %}
     <div class="alert alert-danger" role="alert" style="text-align: center;">
@@ -38,27 +38,19 @@
     </div>
     <hr>
     <div class="comments-list">
-        <div>
-            <img src="/public/images/avatar.png" width="32px" height="32px" />
-            <span>admin</span>
-            <span>日期：2017-05-27 18:00:00</span>
-            <p style="text-indent: 2em; margin-top: 10px">这是评论这是评论这是评论这是评论这是评论这是评论这是评论这是评论这是评论这是评论这是评论这是评论</p>
-            <hr>
-        </div>
-        <div>
-            <img src="/public/images/avatar.png" width="32px" height="32px" />
-            <span>admin</span>
-            <span>日期：2017-05-27 18:00:00</span>
-            <p style="text-indent: 2em; margin-top: 10px">这是评论这是评论这是评论这是评论这是评论这是评论这是评论这是评论这是评论这是评论这是评论这是评论</p>
-            <hr>
-        </div>
-        <div>
-            <img src="/public/images/avatar.png" width="32px" height="32px" />
-            <span>admin</span>
-            <span>日期：2017-05-27 18:00:00</span>
-            <p style="text-indent: 2em; margin-top: 10px">这是评论这是评论这是评论这是评论这是评论这是评论这是评论这是评论这是评论这是评论这是评论这是评论</p>
-            <hr>
-        </div>
+        {% if content.comments %}
+            {% for comment in content.comments %}
+                <div>
+                    <img src="/public/images/avatar.png" width="32px" height="32px" />
+                    <span>{{ comment.username }}</span>
+                    <span>日期：{{ comment.createtime|date('Y-m-d H:i:s',-8*60) }}</span>
+                    <p style="text-indent: 2em; margin-top: 10px">{{ comment.comment }}</p>
+                    <hr>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p style="text-indent:2em;">该博文还没有评论，快去抢沙发吧</p>
+        {% endif %}
     </div>
         <!--{% if comments %}-->
         <!--<div id="list">-->

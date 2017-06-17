@@ -62,27 +62,31 @@ router.get('/detail',function (req,res,next) {
         content.views +=1;
         return content.save();
     }).then(function (newContent) {
+        newContent.comments = newContent.comments.sort(function (a,b) {
+            return a.createtime<b.createtime;
+        });
         data.content = newContent;
         res.render('detail',data);
     });
 });
 
 router.post('/send_comment',function (req,res,next) {
-    var content_id = req.body.content_id;
-    var text = req.body.text_comment;
-    var user_id = req.userInfo._id;
-    var comment = new Comment({
-        content:content_id,
-        user:user_id,
-        text:text
-    });
-    comment.save().then(function (newComment) {
-        Comment.find({content:content_id}).sort({createtime:-1}).populate(['user']).then(function (comments) {
-            jsonResult.code = 0;
-            jsonResult.message = "评论成功";
-            jsonResult.comments = comments;
-            res.json(jsonResult);
-        });
+    var contentid = req.body.contentid;
+    var postData = {
+        username:req.userInfo.username,
+        comment:req.body.comment,
+        createtime:new Date()
+    };
+
+    Content.findOne({
+        _id:contentid
+    }).then(function (content) {
+        content.comments.push(postData);
+        return content.save();
+    }).then(function (newContent) {
+        jsonResult.code = 0;
+        jsonResult.message = "评论成功！";
+        res.json(jsonResult);
     });
 });
 

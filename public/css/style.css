@@ -88,7 +88,7 @@ h1 {
 }
 	h1 a {
 		display:block; 
-		width:285px;
+		width:245px;
 		height:51px;
 		text-indent:-999em;
 		background:url(../images/logo.png) 0 0 no-repeat;
@@ -110,7 +110,8 @@ h1 {
 	font-size:18px; 
 	line-height:2em; 
 	letter-spacing:-1px;
-	padding:7px 24px 9px 25px; 
+	padding:5px 15px 5px 15px;
+	margin-left:4px;
 	color:#000; 
 	text-transform:uppercase; 
 	background:url(../images/menu-a-tail.gif) 0 -999em repeat-x;
@@ -224,9 +225,7 @@ h6 {color:#00989d; font-weight:normal;}
 }
 
 .alert-gray{
-	height: 45px;
 	padding: 10px;
-	margin-bottom: 10px;
 	border-radius: 4px;
 	color: #3c763d;
 	background-color: #f6f6f6;
@@ -234,7 +233,8 @@ h6 {color:#00989d; font-weight:normal;}
 	font-size: 18px;
 }
 
-.alert-gray span{
+.title-extend{
+	text-indent: 2em;
 	font-size: 12px;
 	line-height: 35px;
 }

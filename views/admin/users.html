@@ -16,6 +16,8 @@
             <th>ID</th>
             <th>用户名</th>
             <th>密码</th>
+            <th>是否管理员</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody>
@@ -24,6 +26,14 @@
             <td>{{ user._id.toString() }}</td>
             <td>{{ user.username }}</td>
             <td>{{ user.password }}</td>
+            {% if user.isAdmin===true %}
+                <td>管理员</td>
+            {% else %}
+                <td></td>
+            {% endif %}
+            <td>
+                <a href="/admin/user/update?userid={{ user._id.toString() }}">修改</a>
+            </td>
         </tr>
         {% endfor %}
         </tbody>

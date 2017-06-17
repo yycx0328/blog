@@ -11,7 +11,6 @@ function send_comment() {
         data:{content_id:content_id,text_comment:text_comment},
         dataType:'json',
         success:function (data) {
-            console.log(data);
             var htmlComments = '';
             if(!data.code) {
                 if (data.comments && data.comments.length > 0){

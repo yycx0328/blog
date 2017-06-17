@@ -10,9 +10,11 @@
     <strong>
         <a href="/detail?id={{ content.id }}">{{ content.title }}</a>
     </strong>
+</div>
+<div class="title-extend">
     <span style="margin-right: 10px;">作者：<a href="/user_contents">{{ content.user.username }}</a></span>
     <span style="margin: 0px 10px;">阅读量：{{ content.views }}</span>
-    <!--<span style="margin: 0px 10px;">评论数：10</span>-->
+    <span style="margin: 0px 10px;">分类：{{ content.category.categoryname }}</span>
     <span style="margin: 0px 10px;">创建时间：{{  content.createtime|date('Y-m-d H:i:s',-8*60) }}</span>
 </div>
 <p class="p2">{{ content.abstract }}</p>

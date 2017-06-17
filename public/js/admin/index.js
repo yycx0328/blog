@@ -120,6 +120,35 @@ function addContent() {
     })
 }
 
+
+// 修改用户
+function updateUser() {
+    $userUpdateBox = $('#userUpdateBox');
+    $.ajax({
+        type:'post',
+        url:'/admin/user/update',
+        data:{
+            userid:$userUpdateBox.find('[name="userid"]').val(),
+            isAdmin:$('#slctUserType option:selected').val()
+        },
+        dataType:'json',
+        success:function (data) {
+            if(data.code){
+                displayAlert(false,data.message);
+            }
+            else {
+                displayAlert(true,data.message);
+                setTimeout(function () {
+                    window.location.href='/admin/users';
+                }, 1000);
+            }
+        },
+        error:function (err) {
+            console.log(err);
+        }
+    })
+}
+
 // 显示提示面板
 function displayAlert(success,message) {
     if(success){

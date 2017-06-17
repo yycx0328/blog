@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+{% block title %}
+修改用户
+{% endblock %}
+
+{% block main %}
+<ol class="breadcrumb">
+    <li><a href="/admin">首页</a></li>
+    <li><a href="/admin/users">用户管理</a></li>
+    <li class="active">修改用户</li>
+</ol>
+<div class="container-fluid">
+    <div id="userUpdateBox">
+        <div class="alert alert-success" role="alert" style="display: none;"></div>
+        <div class="alert alert-danger" role="alert" style="display: none;"></div>
+        <input type="hidden" name="userid" value="{{ userid }}" />
+        <div class="form-group">
+            <label for="username">用户名：</label>
+            <input type="text" disabled="disabled" class="form-control" id="username" name="username" value="{{ username }}" />
+        </div>
+        <div class="form-group">
+            <label for="slctUserType">用户类型：</label>
+            <select id="slctUserType" class="form-control">
+                {% if isAdmin === true %}
+                    <option value="true" selected="selected">管理员</option>
+                    <option value="false">用户</option>
+                {% else %}
+                    <option value="true">管理员</option>
+                    <option value="false" selected="selected">用户</option>
+                {% endif %}
+            </select>
+        </div>
+        <div style="margin-top: 10px;">
+            <button type="button" class="btn btn-default" onclick="updateUser()"><i class="glyphicon glyphicon-plus"> 修改</i></button>
+            <a class="btn btn-default" href="/admin/users"><i class="glyphicon glyphicon-share-alt"> 返回列表页</i></a>
+        </div>
+    </div>
+</div>
+{% endblock %}

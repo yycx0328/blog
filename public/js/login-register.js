@@ -42,7 +42,6 @@ $(function () {
             },
             dataType:'json',
             success:function (data) {
-                console.log(data);
                 if(!data.code){
                     showLoginForm();
                     $loginBox.find('[name="username"]').val(data.username);

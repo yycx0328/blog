@@ -198,6 +198,36 @@ router.post('/category/delete',function (req,res,next) {
     });
 });
 
+
+// 修改分类渲染页
+router.get('/user/update',function (req,res,next) {
+    var userid = req.query.userid;
+    User.findById(userid,function (err,info) {
+        res.render('admin/user_update',{
+            userid:userid,
+            username:info.username,
+            isAdmin:info.isAdmin
+        });
+    });
+});
+
+// 修改分类操作
+router.post('/user/update',function (req,res,next) {
+    var userid = req.body.userid;
+    var isAdmin = req.body.isAdmin;
+    User.update({_id:userid},{isAdmin:isAdmin},function(err){
+        if(err){
+            jsonResult.code = 1;
+            jsonResult.message ='修改失败';
+            res.json(jsonResult);
+            return;
+        }
+        jsonResult.code = 0;
+        jsonResult.message ='修改成功';
+        res.json(jsonResult);
+    });
+});
+
 // 获取文章列表
 router.get('/contents',function (req,res,next) {
     var page = Number(req.query.page || 1);
@@ -248,7 +278,6 @@ router.get('/content/add',function (req,res,next) {
 
 // 添加文章操作
 router.post('/content/add',function (req,res,next) {
-    console.log(req.body);
     var category = req.body.category;
     var title = req.body.title;
     var abstract = req.body.abstract;

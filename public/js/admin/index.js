@@ -120,6 +120,36 @@ function addContent() {
     })
 }
 
+// 添加文章
+function updateContent() {
+    $.ajax({
+        type:'post',
+        url:'/admin/content/update',
+        data:{
+            contentid:$('#contentid').val(),
+            category:$('#category option:selected').val(),
+            title:$('#title').val(),
+            abstract:$('#abstract').val(),
+            text:$('.nicEdit-main').html()
+        },
+        dataType:'json',
+        success:function (data) {
+            console.log(data);
+            if(data.code){
+                displayAlert(false,data.message);
+            }
+            else {
+                displayAlert(true,data.message);
+                setTimeout(function () {
+                    window.location.href='/admin/contents';
+                }, 1000);
+            }
+        },
+        error:function (err) {
+            console.log(err);
+        }
+    })
+}
 
 // 修改用户
 function updateUser() {

@@ -198,7 +198,6 @@ router.post('/category/delete',function (req,res,next) {
     });
 });
 
-
 // 修改分类渲染页
 router.get('/user/update',function (req,res,next) {
     var userid = req.query.userid;
@@ -266,6 +265,21 @@ router.get('/contents',function (req,res,next) {
     });
 });
 
+// 修改分类渲染页
+router.get('/content/update',function (req,res,next) {
+    var contentid = req.query.id;
+    var data = {};
+    Content.findOne({
+        _id:contentid
+    }).then(function (content) {
+        data.content = content;
+        return Category.find();
+    }).then(function (categories) {
+        data.categories = categories;
+        res.render('admin/content_update',data);
+    });
+});
+
 // 添加文章渲染页
 router.get('/content/add',function (req,res,next) {
     Category.find().then(function (categories) {
@@ -326,6 +340,60 @@ router.post('/content/add',function (req,res,next) {
             jsonResult.message = '保存失败';
             res.json(jsonResult);
         }
+    });
+});
+
+// 修改文章操作
+router.post('/content/update',function (req,res,next) {
+    var contentid = req.body.contentid;
+    var category = req.body.category;
+    var title = req.body.title;
+    var abstract = req.body.abstract;
+    var text = req.body.text;
+    if(category == ''){
+        jsonResult.code = 1;
+        jsonResult.message = '请选择分类';
+        res.json(jsonResult);
+        return;
+    }
+
+    if(title == ''){
+        jsonResult.code = 2;
+        jsonResult.message = '文章标题不能为空';
+        res.json(jsonResult);
+        return;
+    }
+
+    if(abstract == ''){
+        jsonResult.code = 3;
+        jsonResult.message = '文章简介不能为空';
+        res.json(jsonResult);
+        return;
+    }
+
+    if(text == ''){
+        jsonResult.code = 4;
+        jsonResult.message = '文章内容不能为空';
+        res.json(jsonResult);
+        return;
+    }
+
+    Content.update({_id:contentid},{
+        category:category,
+        user:req.userInfo._id,
+        title:title,
+        abstract:abstract,
+        text:text
+    },function (err) {
+        if(err){
+            jsonResult.code = 1;
+            jsonResult.message ='修改失败';
+            res.json(jsonResult);
+            return;
+        }
+        jsonResult.code = 0;
+        jsonResult.message ='修改成功';
+        res.json(jsonResult);
     });
 });
 

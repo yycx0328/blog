@@ -159,6 +159,7 @@ function updateUser() {
         url:'/admin/user/update',
         data:{
             userid:$userUpdateBox.find('[name="userid"]').val(),
+            password:$userUpdateBox.find('[name="password"]').val(),
             isAdmin:$('#slctUserType option:selected').val()
         },
         dataType:'json',

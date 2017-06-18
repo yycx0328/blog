@@ -205,6 +205,7 @@ router.get('/user/update',function (req,res,next) {
         res.render('admin/user_update',{
             userid:userid,
             username:info.username,
+            password:info.password,
             isAdmin:info.isAdmin
         });
     });
@@ -213,8 +214,9 @@ router.get('/user/update',function (req,res,next) {
 // 修改分类操作
 router.post('/user/update',function (req,res,next) {
     var userid = req.body.userid;
+    var password = req.body.password;
     var isAdmin = req.body.isAdmin;
-    User.update({_id:userid},{isAdmin:isAdmin},function(err){
+    User.update({_id:userid},{isAdmin:isAdmin,password:password},function(err){
         if(err){
             jsonResult.code = 1;
             jsonResult.message ='修改失败';

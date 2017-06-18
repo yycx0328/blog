@@ -37,7 +37,6 @@
             <td>
                 <a href="/detail?id={{ content._id.toString() }}">预览</a>
                 <a href="/admin/content/update?id={{ content._id.toString() }}">修改</a>
-                <a style="cursor: pointer;" onclick="deleteCategoryBtn('{{ content._id.toString() }}')">删除</a>
             </td>
         </tr>
         {% endfor %}

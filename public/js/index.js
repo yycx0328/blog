@@ -16,6 +16,7 @@ function send_comment() {
                 $('[name="comment"]').val('');
                 var html = '';
                 var comments = data.data.comments.reverse();
+                $('#commentcount').html('评论数：'+comments.length);
                 for(var i in comments)
                 {
                     var createtime = new Date(comments[i].createtime);

@@ -62,9 +62,6 @@ router.get('/detail',function (req,res,next) {
         content.views +=1;
         return content.save();
     }).then(function (newContent) {
-        newContent.comments = newContent.comments.sort(function (a,b) {
-            return a.createtime<b.createtime;
-        });
         data.content = newContent;
         res.render('detail',data);
     });
@@ -85,6 +82,7 @@ router.post('/send_comment',function (req,res,next) {
         return content.save();
     }).then(function (newContent) {
         jsonResult.code = 0;
+        jsonResult.data = newContent;
         jsonResult.message = "评论成功！";
         res.json(jsonResult);
     });

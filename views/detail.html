@@ -39,11 +39,11 @@
     <hr>
     <div class="comments-list">
         {% if content.comments %}
-            {% for comment in content.comments %}
+            {% for comment in content.comments.reverse() %}
                 <div>
                     <img src="/public/images/avatar.png" width="32px" height="32px" />
                     <span>{{ comment.username }}</span>
-                    <span>日期：{{ comment.createtime|date('Y-m-d H:i:s',-8*60) }}</span>
+                    <span>日期：{{ comment.createtime|date('Y年m月d日 H:i:s',-8*60) }}</span>
                     <p style="text-indent: 2em; margin-top: 10px">{{ comment.comment }}</p>
                     <hr>
                 </div>
@@ -52,16 +52,5 @@
             <p style="text-indent:2em;">该博文还没有评论，快去抢沙发吧</p>
         {% endif %}
     </div>
-        <!--{% if comments %}-->
-        <!--<div id="list">-->
-            <!--<div class="user-avatar"></div>-->
-        <!--</div>-->
-
-        <!--&lt;!&ndash;{% for comment in comments %}&ndash;&gt;-->
-        <!--&lt;!&ndash;{{ comment }}&ndash;&gt;-->
-        <!--&lt;!&ndash;{% endfor %}&ndash;&gt;-->
-        <!--{% else %}-->
-        <!--<p style="text-indent:2em;">该博文还没有评论，快去抢沙发吧</p>-->
-        <!--{% endif %}-->
 </div>
 {% endblock %}

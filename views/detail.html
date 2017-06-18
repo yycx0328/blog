@@ -38,7 +38,7 @@
     </div>
     <hr>
     <div class="comments-list">
-        {% if content.comments %}
+        {% if content.comments && content.comments.length>0 %}
             {% for comment in content.comments.reverse() %}
                 <div>
                     <img src="/public/images/avatar.png" width="32px" height="32px" />
@@ -49,7 +49,7 @@
                 </div>
             {% endfor %}
         {% else %}
-            <p style="text-indent:2em;">该博文还没有评论，快去抢沙发吧</p>
+            <p style="text-indent:2em;">该博文还没有评论，快去抢沙发吧！</p>
         {% endif %}
     </div>
 </div>

@@ -45,15 +45,15 @@ server {
      #access_log logs/isofteam.access.log main;
      # 错误日志
      #error_log logs/isofteam.error.log; root html; index index.html index.htm;
-   location / {
-    proxy_set_header   X-Real-IP        $remote_addr;
-    proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
-    proxy_set_header   Host             $http_host;
-    proxy_set_header   X-Nginx-Proxy    true;
-    proxy_set_header   Connection       "";
-    proxy_pass  http://127.0.0.1:3000;
-   }
-}
+     location / {
+        proxy_set_header   X-Real-IP        $remote_addr;
+        proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+        proxy_set_header   Host             $http_host;
+        proxy_set_header   X-Nginx-Proxy    true;
+        proxy_set_header   Connection       "";
+        proxy_pass  http://127.0.0.1:3000;
+     }
+}   
 
 这样配置的意义在于，保证开发和发布服务器的代码一模一样，每次发布不需要更改任何代码文件。
 3、启动Nginx：

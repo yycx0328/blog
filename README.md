@@ -22,7 +22,7 @@ fork = true<br />
 > ./mongod -f mongodb.conf<br />
 
 启动mongodb服务后，从github上download源码直接运行就可以完美的跑起来：<br />
-下载源码：<br />
+下载源码： <br />
 > git clone https://github.com/yycx0328/blog.git <br />
 安装依赖： <br />
 > npm install <br />

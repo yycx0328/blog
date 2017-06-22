@@ -330,7 +330,8 @@ router.post('/content/add',function (req,res,next) {
         user:req.userInfo._id,
         title:title,
         abstract:abstract,
-        text:text
+        text:text,
+        createtime:new Date()
     }).save().then(function (newContent) {
         if(newContent){
             jsonResult.code = 0;

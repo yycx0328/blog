@@ -1,8 +1,8 @@
+最近学习了一下nodejs，便尝试着搭建了一下自己的个人技术博客，以便给大家分享一下自己的开发心得和技巧。<br />
+
 博客发布地址：http://www.isofteam.com<br />
 
 github源码地址：http://github.com/yycx0328/blog.git<br />
-
-最近学习了一下nodejs，便尝试着搭建了一下自己的个人技术博客，以便给大家分享一下自己的开发心得和技巧。<br />
 
 一、项目说明： 本项目使用express+mongodb+swig搭建。 swig是一个可在客户端也可在服务端使用的模板引擎，语法简单、易用。<br />
 
@@ -22,7 +22,12 @@ fork = true<br />
 > ./mongod -f mongodb.conf<br />
 
 启动mongodb服务后，从github上download源码直接运行就可以完美的跑起来：<br />
-git clone https://github.com/yycx0328/blog.git 安装依赖： npm install 运行项目： node app.js<br />
+下载源码：<br />
+> git clone https://github.com/yycx0328/blog.git <br />
+安装依赖： <br />
+> npm install <br />
+运行项目： <br />
+> node app.js<br />
 
 二、系统说明：<br />
 1、本项目区分普通用户和管理员；<br />

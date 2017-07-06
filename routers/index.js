@@ -13,7 +13,7 @@ var jsonResult = {
 var data = {};
 
 router.use(function (req,res,next) {
-    var top = 4;
+    var top = 5;
     data.userInfo=req.userInfo;
     Category.find().then(function (categories) {
         data.categories = categories;
@@ -31,7 +31,7 @@ router.get('/',function (req, res,next) {
     data.category=req.query.category||'';
     data.count=0;
     data.page=Number(req.query.page||1);
-    data.limit=4;
+    data.limit=5;
     data.pages=0;
     data.pageArr=[];
     data.contents=[];

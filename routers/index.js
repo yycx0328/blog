@@ -44,7 +44,6 @@ router.get('/',function (req, res,next) {
     Content.find(where).then(function (allContents) {
         if(allContents){
             data.count = allContents.length;
-            console.log(data.count);
         }
         data.pages = Math.ceil(data.count/data.limit);
         for (var i=1; i<=data.pages;i++){

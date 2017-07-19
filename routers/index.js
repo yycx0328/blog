@@ -41,9 +41,11 @@ router.get('/',function (req, res,next) {
         where.category = data.category;
     }
 
-    Content.find(where).count().then(function (cnt) {
-        console.log(cnt);
-        data.count = cnt;
+    Content.find(where).then(function (allContents) {
+        if(allContents){
+            data.count = allContents.length;
+            console.log(data.count);
+        }
         data.pages = Math.ceil(data.count/data.limit);
         for (var i=1; i<=data.pages;i++){
             data.pageArr.push(i);

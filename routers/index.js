@@ -40,7 +40,8 @@ router.get('/',function (req, res,next) {
     if(data.category!=''){
         where.category = data.category;
     }
-    Content.count(where).then(function (count) {
+
+    Content.find(where).count(1).then(function (count) {
         console.log(count);
         data.count = count;
         data.pages = Math.ceil(data.count/data.limit);

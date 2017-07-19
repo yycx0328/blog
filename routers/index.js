@@ -36,17 +36,12 @@ router.get('/',function (req, res,next) {
     data.pageArr=[];
     data.contents=[];
 
-    var count_where = {};
     var where={};
     if(data.category!=''){
-        count_where.category = data.category;
         where.category = data.category;
     }
-    else{
-        count_where = 1;
-    }
 
-    Content.count(count_where).then(function (count) {
+    Content.find(where).count().then(function (count) {
         console.log(count);
         data.count = count;
         data.pages = Math.ceil(data.count/data.limit);

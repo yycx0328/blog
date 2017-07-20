@@ -2,9 +2,14 @@
 <html lang="en">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta http-equiv="content-language" content="en" />
-    <meta name="description" content="javascript,css,nodejs,html5,blog" />
-    <meta name="author" content="小皮蛋" />
+    <meta http-equiv="content-language" content="zh-CN" />
+    <mate name="title" content="做自己的技术博客"></mate>
+    <meta name="author" content="爱弹跳的小皮蛋" />
+    <mate name="keywords" content="个人博客,技术博客,javascript,css,nodejs,html5,blog,nginx,mongodb,C#,python,swing,unbuntu"></mate>
+    <meta name="description" content="个人博客,技术博客,javascript,css,nodejs,html5,blog,nginx,mongodb,C#,python,swing,unbuntu" />
+
+    <title>{% block title%}{% endblock %}</title>
+
     <link href="/public/images/favicon.ico" rel="icon" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/public/css/login-register.css" />
@@ -17,7 +22,6 @@
     <script type="text/javascript" src="/public/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/public/js/login-register.js"></script>
     <script type="text/javascript" src="/public/js/index.js"></script>
-    <title>{% block title%}{% endblock %}</title>
 </head>
 
 <body id="page3">

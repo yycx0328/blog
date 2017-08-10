@@ -24,7 +24,7 @@
 {% endif %}
 
 {% if pageArr.length>0 %}
-<nav style="text-align: center">
+<nav style="text-align: right">
     <ul class="pagination" style="margin-bottom: 20px;">
         {% if page<=1 %}
         <li class="disabled">
@@ -56,6 +56,13 @@
             </a>
         </li>
         {% endif %}
+        <li class="disabled">
+            {% if count>= page*limit %}
+                <span aria-hidden="true">当前第 {{ (page-1)*limit+1 }}-{{ page*limit }} 条，共 {{ count }} 条</span>
+            {% else %}
+                <span aria-hidden="true">当前第 {{ (page-1)*limit+1 }}-{{ count }} 条，共 {{ count }} 条</span>
+            {% endif %}
+        </li>
     </ul>
 </nav>
 {% else %}

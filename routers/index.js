@@ -13,7 +13,7 @@ var jsonResult = {
 var data = {};
 
 router.use(function (req,res,next) {
-    var top = 5;
+    var top = 10;
     data.userInfo=req.userInfo;
     Category.find().then(function (categories) {
         data.categories = categories;

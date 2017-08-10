@@ -320,7 +320,11 @@ dl span {float:left; width:80px;}
 
 .buttons {padding:13px 0 0 0; text-align:right;}
 .buttons a {margin-left:27px;}
-		
+
+img {
+	max-width: 600px;
+}
+
 /****************************footer************************/
 footer {
 	position: relative;
